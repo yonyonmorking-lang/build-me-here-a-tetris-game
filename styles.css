@@ -314,7 +314,7 @@ kbd {
 
   .touch-pad {
     order: 2;
-    width: calc(300px * var(--scale));
+    width: min(300px, calc(100vw - 20px));
     max-width: calc(100vw - 20px);
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 6px;
