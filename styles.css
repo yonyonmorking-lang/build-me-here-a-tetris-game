@@ -21,11 +21,13 @@
 html,
 body {
   min-height: 100%;
+  touch-action: manipulation;
 }
 
 body {
   margin: 0;
   overflow-x: hidden;
+  overscroll-behavior: none;
   background:
     radial-gradient(circle at top left, rgba(6, 214, 160, 0.15), transparent 30rem),
     linear-gradient(135deg, #12151a 0%, #191d23 52%, #101216 100%);
@@ -36,6 +38,8 @@ body {
 button {
   border: 0;
   font: inherit;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .app {
@@ -44,6 +48,7 @@ button {
   place-items: center;
   gap: 18px;
   padding: 20px;
+  touch-action: manipulation;
 }
 
 .game-shell {
@@ -157,6 +162,9 @@ canvas {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 24px 90px rgba(0, 0, 0, 0.48);
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 #board {
@@ -259,6 +267,9 @@ kbd {
   grid-template-columns: repeat(3, minmax(70px, 1fr));
   gap: 8px;
   width: min(100%, 420px);
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .touch-pad button {
