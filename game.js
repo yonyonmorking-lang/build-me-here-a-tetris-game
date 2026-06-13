@@ -66,6 +66,22 @@
   let audio;
   let animationId;
 
+  function updateMobileLayout() {
+    const isMobile = window.matchMedia("(max-width: 560px)").matches;
+    if (!isMobile) {
+      document.documentElement.style.removeProperty("--mobile-board-width");
+      document.documentElement.style.removeProperty("--mobile-board-height");
+      return;
+    }
+
+    const verticalControls = window.innerHeight <= 700 ? 102 : 128;
+    const widthLimit = window.innerWidth - 20;
+    const heightLimit = window.innerHeight - verticalControls;
+    const boardWidth = Math.max(160, Math.min(300, widthLimit, heightLimit / 2));
+    document.documentElement.style.setProperty("--mobile-board-width", `${boardWidth}px`);
+    document.documentElement.style.setProperty("--mobile-board-height", `${boardWidth * 2}px`);
+  }
+
   function createGrid() {
     return Array.from({ length: ROWS }, () => Array(COLS).fill(null));
   }
@@ -966,7 +982,10 @@
     resetGame();
     startGame();
   });
+  window.addEventListener("resize", updateMobileLayout);
+  window.addEventListener("orientationchange", updateMobileLayout);
 
+  updateMobileLayout();
   resetGame();
   cancelAnimationFrame(animationId);
   animationId = requestAnimationFrame(tick);
